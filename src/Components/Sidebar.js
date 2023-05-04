@@ -30,7 +30,14 @@ const Sidebar = () => {
                     }}
                     data-test="profile-image"
                 />
-                <h2 data-test="name">{userName}</h2>
+                <h2
+                    data-test="name"
+                    style={{
+                        fontWeight: 500,
+                        fontSize: '14px',
+                        color: '#262626',
+                    }}
+                >{userName}</h2>
                 <img
                     src={edit}
                     alt="edit-name"
@@ -43,8 +50,21 @@ const Sidebar = () => {
                 />
             </div>
             <div className="see-all">
-                <h5>Sugestões para você</h5>
-                <h5 className='strong'> Ver Tudo</h5>
+                <h5
+                    style={{
+                        fontWeight: 500,
+                        fontSize: '12px',
+                        color: '#8E8E8E',
+                    }}
+                >Sugestões para você</h5>
+                <h5
+                    className='strong'
+                    style={{
+                        fontWeight: 700,
+                        fontSize: '12px',
+                        color: 'rgba(38, 38, 38, 1)'
+                    }}
+                > Ver Tudo</h5>
             </div>
             <div className="suggestions">
                 {suggestions.map((sug, index) => (
@@ -52,8 +72,21 @@ const Sidebar = () => {
                         <div style={{ display: "flex" }}>
                             <img src={sug[1]} alt="suggestion" />
                             <div style={{ marginLeft: "10px" }}>
-                                <h2>{sug[0]}</h2>
-                                <h3>Segue você</h3>
+                                <h2
+                                    style={{
+                                        fontWeight: 500,
+                                        fontSize: '14px',
+                                        color: '#262626',
+                                    }}
+                                >{sug[0]}</h2>
+                                <h3
+                                    style={{
+                                        marginTop: '5px',
+                                        fontWeight: 400,
+                                        fontSize: '12px',
+                                        color: '#8E8E8E',
+                                    }}
+                                >Segue você</h3>
                             </div>
                         </div>
                         <h5
@@ -75,8 +108,23 @@ const Sidebar = () => {
                     </div>
                 ))}
             </div>
+            <p
+                style={{
+                    marginTop: '20px',
+                    fontWeight: 400,
+                    fontSize: '11px',
+                    color: '#C7C7C7',
+                }}
+            >
+                Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade •
+                Termos • Localizações • Contas mais relevantes • Hashtags •
+                Idioma
+                <br />
+                <br />
+                © 2021 INSTAGRAM DO FACEBOOK
+            </p>
         </div>
     )
 }
 
-export default Sidebar
+export default Sidebar;

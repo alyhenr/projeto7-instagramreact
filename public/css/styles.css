@@ -13,7 +13,7 @@ body {
 }
 
 .strong {
-    font-weight: 800;
+    font-weight: 600;
 }
 
 .left,
@@ -29,6 +29,15 @@ ion-icon {
     height: 22px;
 
     cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
 }
 
 /* -------------------- */
@@ -154,6 +163,8 @@ input {
     align-items: center;
     justify-content: center;
 
+    gap: 10px;
+
     width: 66px;
     height: 66px;
 
@@ -167,7 +178,15 @@ input {
     width: 56px;
     height: 56px;
 
-    margin: auto 5px;
+    margin: 18px 5px -5px;
+}
+
+.storie>h3 {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #262626;
 }
 
 #arrow-left,
