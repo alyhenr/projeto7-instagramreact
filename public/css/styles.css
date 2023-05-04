@@ -1,0 +1,291 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FAFAFA;
+    ;
+}
+
+/* Shared classes */
+.hidden {
+    display: none !important;
+}
+
+.strong {
+    font-weight: 800;
+}
+
+.left,
+.right {
+    display: flex;
+    justify-content: flex-start;
+
+    gap: 10px;
+}
+
+ion-icon {
+    width: 22px;
+    height: 22px;
+
+    cursor: pointer;
+}
+
+/* -------------------- */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 62px;
+
+    padding-top: 15px;
+
+    background-color: #FFFFFF;
+    border: 1px solid #DBDBDB;
+
+    z-index: 10;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    max-width: 892px;
+    width: 100%;
+
+    margin: 0 auto;
+}
+
+.ion-icon {
+    width: 22px;
+    height: 22px;
+
+    cursor: pointer;
+}
+
+#logo {
+    width: 103px;
+    height: 29px;
+
+    cursor: pointer;
+}
+
+.border {
+    width: 1px;
+    height: 22px;
+
+    background-color: #DBDBDB;
+}
+
+input {
+    width: 215px;
+    height: 28px;
+
+    background: #FAFAFA;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    position: relative;
+
+    max-width: 950px;
+    width: 100%;
+
+    margin: 88px auto 0;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    position: absolute;
+    top: 25px;
+    right: 0;
+
+    width: 300px;
+}
+
+@media screen and (max-width: 920px) {
+    .sidebar {
+        display: none;
+    }
+
+    .container {
+        align-items: center;
+    }
+}
+
+.stories {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 10px;
+
+    position: relative;
+
+    width: 614px;
+    height: 110px;
+
+    background: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+    margin-bottom: 25px;
+
+    overflow-x: hidden;
+}
+
+.storie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 66px;
+    height: 66px;
+
+    background: url('../assets/img/stories_background.jpg') center;
+    background-size: 66px;
+
+    margin-left: 5px;
+}
+
+.storie>img {
+    width: 56px;
+    height: 56px;
+
+    margin: auto 5px;
+}
+
+#arrow-left,
+#arrow-right {
+    position: sticky;
+    top: 40%;
+
+    width: 32px;
+    height: 32px;
+}
+
+#arrow-left {
+    left: 10px;
+
+    margin-right: -25px;
+
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+#arrow-right {
+    right: 10px;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    gap: 60px;
+
+    width: 614px;
+
+    margin-bottom: 100px;
+}
+
+.post {
+    width: 100%;
+
+    background: #FFFFFF;
+    border: 1px solid #DBDBDB;
+    border-radius: 3px;
+}
+
+.post-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    height: 61px;
+
+    background-color: #FFFFFF;
+    padding: 5px 15px;
+}
+
+.post-head>.left {
+    display: flex;
+    align-items: center;
+}
+
+.post-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 12px;
+
+    height: 76px;
+
+    padding-top: 10px;
+}
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+
+    padding: 0 10px;
+}
+
+.info-likes {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 10px;
+
+    padding-left: 10px;
+}
+
+.user-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.see-all {
+    display: flex;
+    justify-content: space-between;
+}
+
+.suggestions {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    gap: 15px;
+}
+
+.sug {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+}
