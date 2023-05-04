@@ -23,6 +23,14 @@ const Posts = () => {
                 element.name = "heart";
                 element.setAttribute("style", "color: red");
                 document.querySelector(`#${nLikes}`).textContent++;
+                if (ImgClick) {
+                    console.log(ev.target.parentNode)
+                    ev.target.parentNode.querySelector(".animation").classList.remove("hidden");
+                    setTimeout(() => {
+                        ev.target.parentNode.querySelector(".animation").classList.add("hidden");
+                    }, 500);
+                }
+
             } else {
                 element.name = "heart-outline";
                 element.setAttribute("style", "color: black");
@@ -61,10 +69,13 @@ const Posts = () => {
                         <img
                             src={post[2]}
                             alt="post-img"
-                            onClick={(ev) => handleLike(ev, `likes-${index}`, true)}
+                            onDoubleClick={(ev) => handleLike(ev, `likes-${index}`, true)}
                             data-test="post-image"
                             style={{ cursor: "pointer" }}
                         />
+                        <div className="animation hidden">
+                            <ion-icon name="heart"></ion-icon>
+                        </div>
                     </div>
                     <div className="post-footer">
                         <div className="actions">

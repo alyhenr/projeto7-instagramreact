@@ -289,3 +289,36 @@ input {
 
     width: 100%;
 }
+
+.post-img {
+    position: relative;
+}
+
+.animation {
+    position: absolute;
+    top: 35%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.animation>ion-icon {
+    width: 200px;
+    height: 200px;
+
+    color: white;
+
+    animation: likePost 0.3s ease-in 0s 1 normal none;
+}
+
+@keyframes likePost {
+    from {
+        scale: 0.2;
+    }
+
+    to {
+        scale: 1;
+    }
+}
