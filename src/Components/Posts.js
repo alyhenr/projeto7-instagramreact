@@ -36,7 +36,11 @@ const PostHead = ({ imgSrc, author }) => {
         <div className="post-head">
             <div className="left">
                 <img src={imgSrc} alt="post-author" style={{ width: "32px", height: "32px" }} />
-                <h1 className="post-author">{author}</h1>
+                <h1 style={{
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    color: '#262626',
+                }}>{author}</h1>
             </div>
             <img src={ellipsis} alt="more-options" className='ion-icon' />
         </div>
@@ -69,7 +73,7 @@ const PostImg = ({ imgPost, postId, isLiked, setPostsState }) => {
                 alt="post-img"
                 onDoubleClick={() => handleLikeImg(postId)}
                 data-test="post-image"
-                style={{ cursor: "pointer" }}
+                className='post-img'
             />
             <div className={`animation ${dbClickLike}`}>
                 <ion-icon name="heart"></ion-icon>

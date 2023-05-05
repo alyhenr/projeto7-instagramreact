@@ -63,10 +63,14 @@ h5 {
     justify-content: space-between;
     align-items: center;
 
-    max-width: 892px;
-    width: 100%;
+    max-width: 950px;
+    width: 90%;
 
     margin: 0 auto;
+}
+
+.navbar-mobile {
+    display: none;
 }
 
 .ion-icon {
@@ -127,7 +131,7 @@ input {
     width: 300px;
 }
 
-@media screen and (max-width: 920px) {
+@media screen and (max-width: 935px) {
     .sidebar {
         display: none;
     }
@@ -135,6 +139,8 @@ input {
     .container {
         align-items: center;
     }
+
+
 }
 
 .stories {
@@ -146,8 +152,9 @@ input {
 
     position: relative;
 
-    width: 614px;
-    height: 110px;
+    max-width: 614px;
+    width: 100%;
+    height: 121px;
 
     background: #FFFFFF;
     border: 1px solid #DBDBDB;
@@ -155,6 +162,38 @@ input {
     margin-bottom: 25px;
 
     overflow-x: hidden;
+}
+
+@media screen and (max-width: 614px) {
+
+    .navbar {
+        display: none;
+    }
+
+    .navbar-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20px;
+    }
+
+    .container {
+        margin: 62px auto 0;
+    }
+
+    .stories {
+        overflow-x: scroll;
+        margin-bottom: 0;
+        background-color: #FAFAFA;
+
+        border: 1px solid #DBDBDB;
+    }
+
+    #arrow-left,
+    #arrow-right {
+        display: none;
+    }
+
 }
 
 .storie {
@@ -168,7 +207,7 @@ input {
     width: 66px;
     height: 66px;
 
-    background: url('../assets/img/stories_background.jpg') center;
+    background: url('../assets/img/stories_background-noBackground.png') center;
     background-size: 66px;
 
     margin-left: 5px;
@@ -178,7 +217,7 @@ input {
     width: 56px;
     height: 56px;
 
-    margin: 18px 5px -5px;
+    margin: 20px 5px -5px;
 }
 
 .storie>h3 {
@@ -219,7 +258,8 @@ input {
 
     gap: 60px;
 
-    width: 614px;
+    max-width: 614px;
+    width: 100%;
 
     margin-bottom: 100px;
 }
@@ -247,6 +287,10 @@ input {
 .post-head>.left {
     display: flex;
     align-items: center;
+}
+
+.post-img {
+    width: 100%;
 }
 
 .post-footer {

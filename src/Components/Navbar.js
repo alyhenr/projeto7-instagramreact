@@ -15,7 +15,7 @@ const Navbar = () => {
                 <div className="left">
                     <img className="ion-icon" src={icon} alt="icon" />
                     <div className="border" />
-                    <img id="logo" src={logo} alt="logo" href="#" />
+                    <img id="logo" src={logo} alt="logo" />
                 </div>
 
                 <input type="text" placeholder='Pesquisar' />
@@ -26,6 +26,11 @@ const Navbar = () => {
                     <img src={heart} alt="heart" className="ion-icon" />
                     <img src={person} alt="person" className="ion-icon" />
                 </div>
+            </div>
+            <div className="navbar-mobile">
+                <img className="ion-icon" src={icon} alt="icon" />
+                <img id="logo" src={logo} alt="logo" />
+                <img src={plane} alt="plane" className="ion-icon" />
             </div>
         </div>
     )
