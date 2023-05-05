@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 
 import meowed from '../assets/img/meowed.svg';
 import meowedPost from '../assets/img/gato-telefone.svg';
@@ -15,42 +16,18 @@ const posts = [
     [barked, 'barked', barkedPost, adorable_animals, 'adorable_animals']
 ];
 
-// Functionalities
-const handleLike = (ev, nLikes, ImgClick) => {
-    const setLike = (element) => {
-        if (element.name === "heart-outline") {
-            element.name = "heart";
-            element.setAttribute("style", "color: red");
-            document.querySelector(`#${nLikes}`).textContent++;
-            if (ImgClick) {
-                ev.target.parentNode.querySelector(".animation").classList.remove("hidden");
-                setTimeout(() => {
-                    ev.target.parentNode.querySelector(".animation").classList.add("hidden");
-                }, 500);
-            }
-
-        } else {
-            element.name = "heart-outline";
-            element.setAttribute("style", "color: black");
-            document.querySelector(`#${nLikes}`).textContent--;
-        }
-    };
-
-    const element = ImgClick
-        ? ev.target.parentNode.nextSibling.querySelector('[className="heart-like"]')
-        : ev.target;
-
-    if (ImgClick && element.name === "heart") return;
-    setLike(element);
-}
-
-const handleSavePost = ev => {
-    if (ev.currentTarget.name === "bookmark-outline") {
-        ev.currentTarget.name = "bookmark";
-    } else {
-        ev.currentTarget.name = "bookmark-outline";
+const postsData = [...posts, ...posts].map((post, index) => (
+    {
+        imgUrl: post[0],
+        user: post[1],
+        imgPost: post[2],
+        imgUserLike: post[3],
+        userNameLike: post[4],
+        numberOfLikes: Math.ceil(Math.random() * 1000),
+        id: index,
+        liked: false,
     }
-}
+));
 // -----------------------------
 // Components:
 
@@ -66,32 +43,65 @@ const PostHead = ({ imgSrc, author }) => {
     );
 };
 
-const PostImg = ({ imgPost, index }) => {
+const PostImg = ({ imgPost, postId, isLiked, setPostsState }) => {
+    const [dbClickLike, setDbClickLike] = useState('hidden');
+    const handleLikeImg = (id) => {
+        if (isLiked) return;
+        setDbClickLike('');
+        setTimeout(() => {
+            setDbClickLike('hidden');
+        }, 500);
+        setPostsState(prevState => (
+            prevState.map(post => {
+                if (post.id === id) {
+                    post.numberOfLikes++;
+                    post.liked = true;
+                }
+                return post;
+            })
+        ))
+    };
+
     return (
         <div className="post-img">
             <img
                 src={imgPost}
                 alt="post-img"
-                onDoubleClick={(ev) => handleLike(ev, `likes-${index}`, true)}
+                onDoubleClick={() => handleLikeImg(postId)}
                 data-test="post-image"
                 style={{ cursor: "pointer" }}
             />
-            <div className="animation hidden">
+            <div className={`animation ${dbClickLike}`}>
                 <ion-icon name="heart"></ion-icon>
             </div>
         </div>
     );
 };
 
-const PostFooter = ({ nameUserLike, imgUserLike, index }) => {
+const PostFooter = ({ nameUserLike, imgUserLike, numberOfLikes, postId, isLiked, setPostsState }) => {
+    const [savePost, setSavePost] = useState('bookmark-outline');
+
+    const handleLikeHeart = (id) => {
+        setPostsState(prevState => {
+            return prevState.map(post => {
+                if (post.id === id) {
+                    isLiked ? post.numberOfLikes-- : post.numberOfLikes++;
+                    post.liked = !isLiked;
+                }
+                return post;
+            })
+        })
+    };
+
     return (
         <div className="post-footer">
             <div className="actions">
                 <div className="left">
                     <ion-icon
                         className="heart-like"
-                        name="heart-outline"
-                        onClick={(ev) => handleLike(ev, `likes-${index}`)}
+                        name={isLiked ? 'heart' : 'heart-outline'}
+                        style={isLiked ? { color: 'red' } : {}}
+                        onClick={() => handleLikeHeart(postId)}
                         data-test="like-post"
                     ></ion-icon>
                     <img src={chat} alt="comment" className='ion-icon' />
@@ -100,7 +110,11 @@ const PostFooter = ({ nameUserLike, imgUserLike, index }) => {
                 <div className="right">
                     <ion-icon
                         name="bookmark-outline"
-                        onClick={(ev) => handleSavePost(ev)}
+                        onClick={
+                            () => savePost === 'bookmark'
+                                ? setSavePost('bookmark-outline')
+                                : setSavePost('bookmark')
+                        }
                         data-test="save-post"
                     ></ion-icon>
                 </div>
@@ -117,8 +131,8 @@ const PostFooter = ({ nameUserLike, imgUserLike, index }) => {
                     Curtido por <span className='strong'>
                         {nameUserLike}
                     </span> e <span className='strong'>
-                        outras <span id={`likes-${index}`} data-test="likes-number">
-                            {Math.ceil((Math.random() * 10000))} </span> pessoas
+                        outras <span data-test="likes-number">
+                            {numberOfLikes} </span> pessoas
                     </span>
                 </h4>
             </div>
@@ -127,14 +141,27 @@ const PostFooter = ({ nameUserLike, imgUserLike, index }) => {
 }
 
 const Posts = () => {
+    const [postsState, setPostsState] = useState(postsData);
 
     return (
         <div className='posts'>
-            {[...posts, ...posts].map((post, index) => (
-                <div className="post" key={`post-${index}`} data-test="post">
-                    <PostHead imgSrc={post[0]} author={post[1]} />
-                    <PostImg imgPost={post[2]} index={index} />
-                    <PostFooter nameUserLike={post[4]} imgUserLike={post[3]} index={index} />
+            {postsState.map((post) => (
+                <div className="post" key={`post-${post.id}`} data-test="post">
+                    <PostHead imgSrc={post.imgUrl} author={post.user} />
+                    <PostImg
+                        imgPost={post.imgPost}
+                        postId={post.id}
+                        isLiked={post.liked}
+                        setPostsState={setPostsState}
+                    />
+                    <PostFooter
+                        nameUserLike={post.userNameLike}
+                        imgUserLike={post.imgUserLike}
+                        numberOfLikes={post.numberOfLikes}
+                        postId={post.id}
+                        isLiked={post.liked}
+                        setPostsState={setPostsState}
+                    />
                 </div>
             ))}
         </div>
