@@ -109,7 +109,7 @@ const PostFooter = ({ nameUserLike, imgUserLike, numberOfLikes, postId, isLiked,
                 </div>
                 <div className="right">
                     <ion-icon
-                        name="bookmark-outline"
+                        name={savePost}
                         onClick={
                             () => savePost === 'bookmark'
                                 ? setSavePost('bookmark-outline')
