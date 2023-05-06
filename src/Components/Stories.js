@@ -10,34 +10,18 @@ import filomoderna from '../assets/img/filomoderna.svg';
 import memeg from '../assets/img/memeriagourmet.svg';
 import arrow from '../assets/img/chevron-forward-circle 1.png';
 
-class StorieInfo {
-    constructor(imgSrc, user) {
-        this.imgSrc = imgSrc;
-        this.user = user;
-    }
-
-    get storieObj() {
-        return this.storieForm();
-    }
-
-    storieForm() {
-        return {
-            url: this.imgSrc,
-            name: this.user,
-        }
-    }
-}
-
 const storiesData = [
     [nGag, '9gag'], [meowed, 'meowed'], [barked, 'barked'],
     [nathanwpyl, 'nathanwpylestrangeplanet'], [wawawi, 'wawawicomics'],
     [respondeai, 'respondeai'], [filomoderna, 'filomoderna'], [memeg, 'memeriagourmet']
 ];
 
-const stories = storiesData.map(data => {
-    const dataObj = new StorieInfo(data[0], data[1]);
-    return dataObj.storieObj;
-});
+const stories = storiesData.map(data => (
+    {
+        url: data[0],
+        name: data[1],
+    }
+));
 
 const Storie = ({ storieImg, storieAuthor }) => {
     return (
@@ -65,7 +49,13 @@ const Stories = () => {
 
     return (
         <div className='stories'>
-            <img src={arrow} alt="arrowLeft" className='ion-icon' id="arrow-left" onClick={(ev) => handleClick(ev, 'left')} />
+            <img
+                src={arrow}
+                alt="arrowLeft"
+                className='ion-icon'
+                id="arrow-left"
+                onClick={(ev) => handleClick(ev, 'left')}
+            />
             {[...stories, ...stories].map((storie, index) => (
                 <Storie
                     storieImg={storie.url}

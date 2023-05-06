@@ -17,6 +17,12 @@ const Sidebar = () => {
         ['smallcutecats', smallcutecats]
     ];
 
+    const isValidUrl = (url) => {
+        return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url)
+            || /(data:image)/.test(url)
+            || /(http|https)/.test(url);
+    };
+
     return (
         <div className='sidebar'>
             <div className="user-info">
@@ -26,7 +32,11 @@ const Sidebar = () => {
                     style={{ width: "56px", height: "56px", cursor: "pointer", borderRadius: "50%" }}
                     onClick={() => {
                         const newPicProfile = prompt("Digite o link da nova foto:");
-                        if (newPicProfile) setPicProfile(newPicProfile);
+                        if (isValidUrl(newPicProfile)) {
+                            setPicProfile(newPicProfile);
+                        } else {
+                            if (newPicProfile) alert("O link digitado não contém uma imagem.")
+                        };
                     }}
                     data-test="profile-image"
                 />
